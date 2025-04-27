@@ -1,0 +1,16 @@
+import pandas as pd
+from scipy.stats import shapiro
+
+df = pd.read_excel(r"E:\桌面\毕设中期\results\篇章MDD\MDD_eachabstract_human.xls")  # 修改为你的文件路径
+
+mdd_values = df['MDD']  # 如果列名不同，请替换为实际列名
+
+mdd_values = mdd_values.dropna()
+
+stat, p = shapiro(mdd_values)
+
+print(f"yourfilepath.xls")
+if p > 0.05:
+    print(" The statistics distributed normally（p > 0.05）")
+else:
+    print("The statistics don't distributed normally（p <= 0.05）")
