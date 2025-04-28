@@ -1,0 +1,17 @@
+import pandas as pd
+from scipy.stats import mannwhitneyu
+
+human_df = pd.read_csv(r"yourpath.csv")  
+llm_df = pd.read_csv(r"yourpath.csv")
+
+human_mdd = human_df['Right_%']
+llm_mdd = llm_df['Right_%']
+
+# Mann–Whitney U 检验
+stat, p = mannwhitneyu(human_mdd, llm_mdd, alternative='two-sided')
+
+print(f"Wilcoxon rank-sum test: U={stat:.3f}, p-value={p:.4f}")
+if p < 0.05:
+    print("两组在 MDD 上有显著差异")
+else:
+    print("未发现显著差异")
